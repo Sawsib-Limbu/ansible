@@ -1,6 +1,7 @@
 ---
 - name: Deploy app server
   hosts: all
+  become: true
   tasks: 
     - name: Install apache2 package in ubuntu server
       apt:
