@@ -1,0 +1,32 @@
+---
+- name: Deploy app server
+  hosts: all
+  become: true  
+  tasks: 
+    - name: Install packages in ubuntu server
+      apt:
+        name: "{{item}}"
+        state: present
+      when: ansible_distribution == "Ubuntu"
+      loop: 
+        - apache2
+        - wget
+        - curl
+        - git 
+
+
+    - name: Add groups in Ubuntu server
+      group: 
+        name: devopsgrp
+        state: present
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Add users in Ubuntu server
+      user:
+        name: "{{item}}"
+        state: present
+        group: devopsgrp  
+      when: ansible_distribution == "Ubuntu" 
+      loop: "{{username}}"  
+
+
