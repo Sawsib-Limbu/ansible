@@ -1,0 +1,11 @@
+---
+- name: Deploy app server
+  hosts: all
+  tasks: 
+    - name: Install apache2 package in ubuntu server
+      apt:
+        name: apache2
+        state: present
+      when: ansible_distribution == "Ubuntu"
+
+
