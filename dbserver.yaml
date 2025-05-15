@@ -1,3 +1,4 @@
+---
 - name: Setting up db server
   hosts: dbservergrp
   become: yes  
